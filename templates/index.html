@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Influencer Sentiment Analysis</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-primary {
+            background-color: #007BFF;
+            border-color: #007BFF;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+            color: #28a745; /* Green color for positive sentiment */
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="card p-4">
+            <h1 class="card-title text-center mb-4">Influencer Sentiment Analysis</h1>
+
+            <form action="/analyze_sentiment" method="post">
+                <div class="form-group">
+                    <label for="feedback">Feedback about Influencer:</label>
+                    <textarea class="form-control" id="feedback" name="feedback" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="peopleOpinion">People's Opinion:</label>
+                    <textarea class="form-control" id="peopleOpinion" name="peopleOpinion" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="skills">Overall Skills of the Influencer:</label>
+                    <textarea class="form-control" id="skills" name="skills" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="rating">Rating:</label>
+                    <input type="number" class="form-control" id="rating" name="rating" min="1" max="5" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block mt-3">Submit</button>
+            </form>
+
+            <div id="result" class="text-center mt-4">
+                {% if sentiment_result %}
+                    <p><strong>Influencer Score:</strong> {{ sentiment_result }}</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>
